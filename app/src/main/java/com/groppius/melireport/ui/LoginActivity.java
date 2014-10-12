@@ -267,10 +267,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
         private JSONObject meliResponse;
 
         UserLoginTask(String email, String password, Activity context) {
-//            mEmail = email;
-//            mPassword = password;
-            mEmail = "TT726719";
-            mPassword = "qatest683";
+            mEmail = email;
+            mPassword = password;
             this.context = context;
         }
 

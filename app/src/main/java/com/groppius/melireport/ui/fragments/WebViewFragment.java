@@ -44,7 +44,7 @@ public class WebViewFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_item_report, container, false);
 
         WebView webView = (WebView) rootView.findViewById(R.id.meliWebView);
-        webView.loadUrl("http://192.168.43.13/index.php/report/TT726719/0497eafa43804d8728d41d91d1c862cd/html/00");
+        webView.loadUrl("http://192.168.43.13/index.php/report/TT726719/0497eafa43804d8728d41d91d1c862cd/html/1/2/3");
 
         Button buttonPdf = (Button) rootView.findViewById(R.id.button_get_pdf);
         buttonPdf.setOnClickListener(new View.OnClickListener() {
@@ -53,8 +53,8 @@ public class WebViewFragment extends Fragment {
                 if (isDownloadManagerAvailable(getActivity().getApplicationContext())) {
                     String url = "http://192.168.43.13/index.php/report/TT726719/0497eafa43804d8728d41d91d1c862cd/pdf/00";
                     DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-                    request.setDescription("Some descrition");
-                    request.setTitle("Some title");
+                    request.setDescription("Report pdf description");
+                    request.setTitle("Report");
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                         request.allowScanningByMediaScanner();

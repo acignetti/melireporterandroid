@@ -24,6 +24,7 @@
         android:id="@+id/item_form_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         >
         <LinearLayout
             android:id="@+id/item_form"
@@ -43,8 +44,7 @@
                 <DatePicker
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:calendarViewShown="false"
-                    android:foregroundGravity="right"></DatePicker>
+                    android:calendarViewShown="false"></DatePicker>
 
             </LinearLayout>
             <LinearLayout
@@ -74,18 +74,19 @@
                     android:text="@string/title_category" />
 
             </LinearLayout>
-            <Button
-                android:id="@+id/button_save_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/label_Save_button" />
-            <Button
-                android:id="@+id/button_generate_report_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/label_generate_report_button" />
-            </LinearLayout>
+        </LinearLayout>
     </ScrollView>
+    <Button
+        android:id="@+id/button_save_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_Save_button" />
+    <Button
+        android:id="@+id/button_generate_report_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_generate_report_button" />
+
 
 </LinearLayout>
 
