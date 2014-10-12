@@ -64,6 +64,7 @@ public interface MeliReportDbGlobalsInterface {
     public static final String SALE_COLUMN_PAYMENT_ID = "sale_payment_id";
     public static final String SALE_COLUMN_QUANTITY = "sale_quantity";
     public static final String SALE_COLUMN_BOUGHT_ON = "sale_bought_on";
-    public static final String SALE_COLUMN_PAYED_ON = "sale_payed_on";
+    public static final String SALE_COLUMN_PAID_ON = "sale_paid_on";
     public static final String SALE_COLUMN_STATUS = "sale_status";
+    public static final String SALE_COLUMN_TOTAL = "sale_status";
 }

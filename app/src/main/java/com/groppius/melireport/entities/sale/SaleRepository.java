@@ -19,7 +19,7 @@ public class SaleRepository implements MeliReportDbGlobalsInterface {
     private DataBaseHelper dataBaseHelper;
     private Context context;
     private final String[] COLUMNS = {SALE_COLUMN_ID, SALE_COLUMN_ITEM_ID, SALE_COLUMN_BOUGHT_ON,
-            SALE_COLUMN_PAYED_ON, SALE_COLUMN_PAYMENT_ID, SALE_COLUMN_QUANTITY,
+            SALE_COLUMN_PAID_ON, SALE_COLUMN_PAYMENT_ID, SALE_COLUMN_QUANTITY,
             SALE_COLUMN_STATUS, SALE_COLUMN_USER_ID};
 
     public SaleRepository(Context context) {
@@ -36,7 +36,7 @@ public class SaleRepository implements MeliReportDbGlobalsInterface {
                 sale.setSale_id(cursor.getLong(cursor.getColumnIndex(SALE_COLUMN_ID)));
                 sale.setSale_id(cursor.getLong(cursor.getColumnIndex(SALE_COLUMN_ITEM_ID)));
                 sale.setSale_bought_on(Helper.dateFormatter(cursor.getString(cursor.getColumnIndex(SALE_COLUMN_BOUGHT_ON))));
-                sale.setSale_payed_on(Helper.dateFormatter(cursor.getString(cursor.getColumnIndex(SALE_COLUMN_PAYED_ON))));
+                sale.setSale_payed_on(Helper.dateFormatter(cursor.getString(cursor.getColumnIndex(SALE_COLUMN_PAID_ON))));
                 sale.setSale_payment_id(cursor.getLong(cursor.getColumnIndex(SALE_COLUMN_PAYMENT_ID)));
                 sale.setSale_quantity(cursor.getInt(cursor.getColumnIndex(SALE_COLUMN_QUANTITY)));
                 sale.setSale_status(cursor.getInt(cursor.getColumnIndex(SALE_COLUMN_STATUS)));
@@ -53,7 +53,7 @@ public class SaleRepository implements MeliReportDbGlobalsInterface {
         values.put(SALE_COLUMN_ID, sale.getSale_id());
         values.put(SALE_COLUMN_ITEM_ID, sale.getSale_item_id());
         values.put(SALE_COLUMN_BOUGHT_ON, sale.getSale_bought_on().toString());
-        values.put(SALE_COLUMN_PAYED_ON, sale.getSale_payed_on().toString());
+        values.put(SALE_COLUMN_PAID_ON, sale.getSale_payed_on().toString());
         values.put(SALE_COLUMN_PAYMENT_ID, sale.getSale_payment_id());
         values.put(SALE_COLUMN_QUANTITY, sale.getSale_quantity());
         values.put(SALE_COLUMN_STATUS, sale.getSale_status());
@@ -71,7 +71,7 @@ public class SaleRepository implements MeliReportDbGlobalsInterface {
         values.put(SALE_COLUMN_ID, sale.getSale_id());
         values.put(SALE_COLUMN_ITEM_ID, sale.getSale_item_id());
         values.put(SALE_COLUMN_BOUGHT_ON, sale.getSale_bought_on().toString());
-        values.put(SALE_COLUMN_PAYED_ON, sale.getSale_payed_on().toString());
+        values.put(SALE_COLUMN_PAID_ON, sale.getSale_payed_on().toString());
         values.put(SALE_COLUMN_PAYMENT_ID, sale.getSale_payment_id());
         values.put(SALE_COLUMN_QUANTITY, sale.getSale_quantity());
         values.put(SALE_COLUMN_STATUS, sale.getSale_status());

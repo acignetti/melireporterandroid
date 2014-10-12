@@ -25,55 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-        <LinearLayout
-            android:id="@+id/item_form"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/abc_action_bar_subtitle_text_size"
-                    android:text="@string/title_date_from" />
-                <DatePicker
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:calendarViewShown="false"
-                    android:foregroundGravity="right"></DatePicker>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/abc_action_bar_subtitle_text_size"
-                    android:text="@string/title_date_to" />
-                <DatePicker
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:calendarViewShown="false"
-                    android:foregroundGravity="right"></DatePicker>
-            </LinearLayout>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/label_Save_button" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/label_generate_report_button" />
-        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>
-
-
-

@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.groppius.melireport.R;
-import com.groppius.melireport.entities.item.ItemRepository;
 import com.groppius.melireport.ui.ReportMainActivity;
 
 /**
@@ -17,6 +17,9 @@ import com.groppius.melireport.ui.ReportMainActivity;
 public class ItemReportFragment extends Fragment {
 
     protected static final String ARG_SECTION_NUMBER = "section_number";
+
+    Button buttonGenerate;
+    Button buttonSave;
 
     public static ItemReportFragment newInstance(int sectionNumber) {
         ItemReportFragment fragment = new ItemReportFragment();
@@ -31,7 +34,25 @@ public class ItemReportFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_item_report, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_item_filter, container, false);
+
+        buttonGenerate = (Button) rootView.findViewById(R.id.button_generate_report_item);
+        buttonGenerate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        buttonSave =  (Button) rootView.findViewById(R.id.button_save_item);
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
         return rootView;
     }
 

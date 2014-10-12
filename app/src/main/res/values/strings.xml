@@ -14,5 +14,6 @@
     <string name="title_date_to">To:</string>
     <string name="label_Save_button">Save Preferences</string>
     <string name="label_generate_report_button">Generate Report</string>
+    <string name="title_category">Categories:</string>
 
 </resources>

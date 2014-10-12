@@ -23,7 +23,7 @@ public class DataBaseHelper extends SQLiteOpenHelper implements MeliReportDbGlob
          * BUYERS TABLE CREATION
          */
         sqLiteDatabase.execSQL("CREATE TABLE " + BUYER_TABLE_NAME + " ("
-                + BUYER_COLUMN_ID + " INTEGER,"
+                + BUYER_COLUMN_ID + " INTEGER PRIMARY KEY,"
                 + BUYER_COLUMN_ADDRESS + " TEXT,"
                 + BUYER_COLUMN_EMAIL + " TEXT,"
                 + BUYER_COLUMN_LAST_NAME + " TEXT,"
@@ -35,7 +35,7 @@ public class DataBaseHelper extends SQLiteOpenHelper implements MeliReportDbGlob
          * CATEGORIES TABLE CREATION
          */
         sqLiteDatabase.execSQL("CREATE TABLE " + CATEGORY_TABLE_NAME + " ("
-                + CATEGORY_COLUMN_ID + " INTEGER,"
+                + CATEGORY_COLUMN_ID + " INTEGER PRIMARY KEY,"
                 + CATEGORY_COLUMN_NAME + " TEXT,"
                 + CATEGORY_COLUMN_DESCRIPTION + " TEXT,"
                 + CATEGORY_COLUMN_FATHER + " INTEGER"
@@ -44,7 +44,7 @@ public class DataBaseHelper extends SQLiteOpenHelper implements MeliReportDbGlob
          * ITEMS TABLE CREATION
          */
         sqLiteDatabase.execSQL("CREATE TABLE " + ITEM_TABLE_NAME + " ("
-                + ITEM_COLUMN_ID + " INTEGER,"
+                + ITEM_COLUMN_ID + " INTEGER PRIMARY KEY,"
                 + ITEM_COLUMN_CATEGORY_ID_FK + " INTEGER REFERENCES "+ CATEGORY_TABLE_NAME +","
                 + ITEM_COLUMN_COST + " INTEGER,"
                 + ITEM_COLUMN_NAME+ " TEXT,"
@@ -71,7 +71,7 @@ public class DataBaseHelper extends SQLiteOpenHelper implements MeliReportDbGlob
          * PAYMENTS TABLE CREATION
          */
         sqLiteDatabase.execSQL("CREATE TABLE " + PAYMENT_TABLE_NAME + " ("
-                + PAYMENT_COLUMN_ID + " INTEGER,"
+                + PAYMENT_COLUMN_ID + " INTEGER PRIMARY KEY,"
                 + PAYMENT_COLUMN_NAME + " TEXT,"
                 + PAYMENT_COLUMN_DESCRIPTION + " TEXT"
                 + ");");
@@ -79,14 +79,15 @@ public class DataBaseHelper extends SQLiteOpenHelper implements MeliReportDbGlob
          * SALES TABLE CREATION
          */
         sqLiteDatabase.execSQL("CREATE TABLE " + SALE_TABLE_NAME + " ("
-                + SALE_COLUMN_ID + " INTEGER,"
+                + SALE_COLUMN_ID + " INTEGER PRIMARY KEY,"
                 + SALE_COLUMN_USER_ID + " INTEGER REFERENCES " + USER_TABLE_NAME + ","
                 + SALE_COLUMN_ITEM_ID + " INTEGER REFERENCES " + ITEM_TABLE_NAME + ","
                 + SALE_COLUMN_PAYMENT_ID + " INTEGER REFERENCES " + PAYMENT_TABLE_NAME + ","
                 + SALE_COLUMN_QUANTITY + " INTEGER,"
                 + SALE_COLUMN_BOUGHT_ON + " NUMERIC,"
-                + SALE_COLUMN_PAYED_ON + " NUMERIC,"
-                + SALE_COLUMN_STATUS + " INTEGER"
+                + SALE_COLUMN_PAID_ON + " NUMERIC,"
+                + SALE_COLUMN_STATUS + " TEXT,"
+                + SALE_COLUMN_TOTAL + " NUMERIC"
                 + ");");
     }
 
