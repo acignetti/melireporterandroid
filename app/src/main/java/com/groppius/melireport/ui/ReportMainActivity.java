@@ -18,8 +18,6 @@ import com.groppius.melireport.ui.fragments.ItemReportFragment;
 import com.groppius.melireport.ui.fragments.LocationReportFragment;
 import com.groppius.melireport.ui.fragments.NavigationDrawerFragment;
 import com.groppius.melireport.R;
-import com.groppius.melireport.entities.buyer.Buyer;
-import com.groppius.melireport.entities.buyer.BuyerRepository;
 import com.groppius.melireport.ui.fragments.PaymentTypeReportFragment;
 
 
@@ -62,55 +60,41 @@ public class ReportMainActivity extends Activity
         FragmentManager fragmentManager = getFragmentManager();
         Fragment reportFragment = null;
         switch (position) {
-            case 1:
+            case 0:
                 mTitle = getString(R.string.title_section_item);
-                reportFragment = (ItemReportFragment)
-                        getFragmentManager().findFragmentById(R.id.navigation_drawer);
+                reportFragment = ItemReportFragment.newInstance(position + 1);
+                break;
+            case 1:
+                mTitle = getString(R.string.title_section_category);
+                reportFragment = CategoryReportFragment.newInstance(position + 1);
                 break;
             case 2:
-                mTitle = getString(R.string.title_section_category);
-                reportFragment = (CategoryReportFragment)
-                        getFragmentManager().findFragmentById(R.id.navigation_drawer);
+                mTitle = getString(R.string.title_section_payment_type);
+                reportFragment = PaymentTypeReportFragment.newInstance(position + 1);
                 break;
             case 3:
-                mTitle = getString(R.string.title_section_payment_type);
-                reportFragment = (PaymentTypeReportFragment)
-                        getFragmentManager().findFragmentById(R.id.navigation_drawer);
-                break;
-            case 4:
                 mTitle = getString(R.string.title_section_location);
-                reportFragment = (LocationReportFragment)
-                        getFragmentManager().findFragmentById(R.id.navigation_drawer);
+                reportFragment = LocationReportFragment.newInstance(position + 1);
                 break;
         }
-
         fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .replace(R.id.container, reportFragment)
                 .commit();
     }
 
     public void onSectionAttached(int number) {
-        Fragment reportFragment = null;
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section_item);
-                reportFragment = (ItemReportFragment)
-                        getFragmentManager().findFragmentById(R.id.navigation_drawer);
                 break;
             case 2:
                 mTitle = getString(R.string.title_section_category);
-                reportFragment = (CategoryReportFragment)
-                        getFragmentManager().findFragmentById(R.id.navigation_drawer);
                 break;
             case 3:
                 mTitle = getString(R.string.title_section_payment_type);
-                reportFragment = (PaymentTypeReportFragment)
-                        getFragmentManager().findFragmentById(R.id.navigation_drawer);
                 break;
             case 4:
                 mTitle = getString(R.string.title_section_location);
-                reportFragment = (LocationReportFragment)
-                        getFragmentManager().findFragmentById(R.id.navigation_drawer);
                 break;
         }
 

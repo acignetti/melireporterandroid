@@ -16,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,6 +28,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.groppius.melireport.R;
+import com.groppius.melireport.entities.user.User;
+import com.groppius.melireport.entities.user.UserRepository;
 import com.groppius.melireport.synchro.SyncTask;
 
 import org.apache.http.HttpResponse;
@@ -34,9 +37,9 @@ import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -153,13 +156,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
         }
     }
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
+        return true;
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return true;
     }
 
     /**
@@ -266,23 +267,45 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
         private JSONObject meliResponse;
 
         UserLoginTask(String email, String password, Activity context) {
-            /*mEmail = email;
-            mPassword = password;*/
-            mEmail = "admin@gmail.com";
-            mPassword = "asdf1234";
+//            mEmail = email;
+//            mPassword = password;
+            mEmail = "TT726719";
+            mPassword = "qatest683";
             this.context = context;
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
+            Boolean success = false;
             try {
                 response = httpclient.execute(new HttpPost("http://10.50.209.14/index.php/user/"+mEmail+"/"+mPassword));
                 StatusLine statusLine = response.getStatusLine();
+                UserRepository userRepository = new UserRepository(context);
                 if(statusLine.getStatusCode() == HttpStatus.SC_OK) {
                     ByteArrayOutputStream out = new ByteArrayOutputStream();
                     response.getEntity().writeTo(out);
                     out.close();
                     meliResponse = new JSONObject(out.toString());
+
+                    if(meliResponse != null) {
+                        success = meliResponse.getBoolean("success");
+                        //{ "success" : true, "message" : "Mensaje informativo", "optional" : "Datos extras que usa la aplicación" }
+                        if(success) {
+                            String userToken = meliResponse.getString("optional");
+                            if(userToken != null) {
+                                User user = userRepository.get(mEmail);
+                                if(user == null) {
+                                    user = new User();
+                                    user.setUser_name(mEmail);
+                                    user.setUser_password(mPassword);
+                                    user.setUser_token(userToken);
+                                    userRepository.insert(user);
+                                }
+                            }
+                        } else {
+                            Log.d("LOGIN_TASK", meliResponse.getString("message"));
+                        }
+                    }
                 }
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
@@ -292,7 +315,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
                 e.printStackTrace();
             }
 
-            return true;
+            return success;
         }
 
         @Override

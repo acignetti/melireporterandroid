@@ -13,6 +13,7 @@ public interface MeliReportDbGlobalsInterface {
     public static final String BUYER_COLUMN_LAST_NAME = "buyer_last_name";
     public static final String BUYER_COLUMN_EMAIL = "buyer_email";
     public static final String BUYER_COLUMN_ADDRESS = "buyer_address";
+    public static final String BUYER_COLUMN_REAL_NAME = "buyer_real_name";
     /**
      * ITEMS TABLE
      */

@@ -8,13 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.groppius.melireport.R;
+import com.groppius.melireport.entities.item.ItemRepository;
 import com.groppius.melireport.ui.ReportMainActivity;
 
 /**
  * Created by julio on 12/10/14.
  */
 public class ItemReportFragment extends Fragment {
-    private static final String ARG_SECTION_NUMBER = "section_number";
+
+    protected static final String ARG_SECTION_NUMBER = "section_number";
 
     public static ItemReportFragment newInstance(int sectionNumber) {
         ItemReportFragment fragment = new ItemReportFragment();
@@ -26,11 +28,10 @@ public class ItemReportFragment extends Fragment {
 
     public ItemReportFragment() {
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_report_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_item_report, container, false);
         return rootView;
     }
 

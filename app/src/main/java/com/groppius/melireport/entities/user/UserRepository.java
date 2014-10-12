@@ -50,7 +50,6 @@ public class UserRepository implements MeliReportDbGlobalsInterface {
     public void insert(User user) {
         SQLiteDatabase db = dataBaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(USER_COLUMN_ID, user.getUser_id());
         values.put(USER_COLUMN_NAME, user.getUser_name());
         values.put(USER_COLUMN_LAST_NAME, user.getUser_last_name());
         values.put(USER_COLUMN_EMAIL, user.getUser_email());
@@ -68,7 +67,6 @@ public class UserRepository implements MeliReportDbGlobalsInterface {
     public int update(User user) {
         SQLiteDatabase db = dataBaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(USER_COLUMN_ID, user.getUser_id());
         values.put(USER_COLUMN_NAME, user.getUser_name());
         values.put(USER_COLUMN_LAST_NAME, user.getUser_last_name());
         values.put(USER_COLUMN_EMAIL, user.getUser_email());
@@ -100,6 +98,20 @@ public class UserRepository implements MeliReportDbGlobalsInterface {
                         COLUMNS, // b. column names
                         USER_COLUMN_ID + " = ?", // c. selections
                         new String[] { String.valueOf(userId) }, // d. selections args
+                        null, // e. group by
+                        null, // f. having
+                        null, // g. order by
+                        null); // h. limit
+        return cursorToUser(cursor).get(0);
+    }
+
+    public User get(String userName) {
+        SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
+        Cursor cursor =
+                db.query(USER_TABLE_NAME, // a. table
+                        COLUMNS, // b. column names
+                        USER_COLUMN_NAME + " = ?", // c. selections
+                        new String[] { userName }, // d. selections args
                         null, // e. group by
                         null, // f. having
                         null, // g. order by
