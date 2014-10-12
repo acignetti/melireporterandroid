@@ -64,6 +64,7 @@ public class WebViewFragment extends Fragment {
 
                     DownloadManager manager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
                     manager.enqueue(request);
+
                 }
             }
         });
