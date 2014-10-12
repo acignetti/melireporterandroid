@@ -13,10 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.groppius.melireport.synchro.SyncTask;
+import com.groppius.melireport.ui.fragments.CategoryReportFragment;
+import com.groppius.melireport.ui.fragments.ItemReportFragment;
+import com.groppius.melireport.ui.fragments.LocationReportFragment;
 import com.groppius.melireport.ui.fragments.NavigationDrawerFragment;
 import com.groppius.melireport.R;
 import com.groppius.melireport.entities.buyer.Buyer;
 import com.groppius.melireport.entities.buyer.BuyerRepository;
+import com.groppius.melireport.ui.fragments.PaymentTypeReportFragment;
 
 
 public class ReportMainActivity extends Activity
@@ -56,23 +60,60 @@ public class ReportMainActivity extends Activity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
+        Fragment reportFragment = null;
+        switch (position) {
+            case 1:
+                mTitle = getString(R.string.title_section_item);
+                reportFragment = (ItemReportFragment)
+                        getFragmentManager().findFragmentById(R.id.navigation_drawer);
+                break;
+            case 2:
+                mTitle = getString(R.string.title_section_category);
+                reportFragment = (CategoryReportFragment)
+                        getFragmentManager().findFragmentById(R.id.navigation_drawer);
+                break;
+            case 3:
+                mTitle = getString(R.string.title_section_payment_type);
+                reportFragment = (PaymentTypeReportFragment)
+                        getFragmentManager().findFragmentById(R.id.navigation_drawer);
+                break;
+            case 4:
+                mTitle = getString(R.string.title_section_location);
+                reportFragment = (LocationReportFragment)
+                        getFragmentManager().findFragmentById(R.id.navigation_drawer);
+                break;
+        }
+
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
     }
 
     public void onSectionAttached(int number) {
+        Fragment reportFragment = null;
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                mTitle = getString(R.string.title_section_item);
+                reportFragment = (ItemReportFragment)
+                        getFragmentManager().findFragmentById(R.id.navigation_drawer);
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+                mTitle = getString(R.string.title_section_category);
+                reportFragment = (CategoryReportFragment)
+                        getFragmentManager().findFragmentById(R.id.navigation_drawer);
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+                mTitle = getString(R.string.title_section_payment_type);
+                reportFragment = (PaymentTypeReportFragment)
+                        getFragmentManager().findFragmentById(R.id.navigation_drawer);
+                break;
+            case 4:
+                mTitle = getString(R.string.title_section_location);
+                reportFragment = (LocationReportFragment)
+                        getFragmentManager().findFragmentById(R.id.navigation_drawer);
                 break;
         }
+
     }
 
     public void restoreActionBar() {
@@ -81,7 +122,6 @@ public class ReportMainActivity extends Activity
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
