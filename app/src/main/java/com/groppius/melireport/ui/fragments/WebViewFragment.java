@@ -15,7 +15,9 @@ import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 
 import com.groppius.melireport.R;
@@ -44,6 +46,13 @@ public class WebViewFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_item_report, container, false);
 
         WebView webView = (WebView) rootView.findViewById(R.id.meliWebView);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient());
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setDomStorageEnabled(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setDomStorageEnabled(true);
         webView.loadUrl("http://192.168.43.13/index.php/report/TT726719/0497eafa43804d8728d41d91d1c862cd/html/1/2/3");
 
         Button buttonPdf = (Button) rootView.findViewById(R.id.button_get_pdf);
