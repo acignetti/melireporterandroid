@@ -9,7 +9,7 @@ public interface MeliReportGlobalUriInterface {
     public static final String GET_USERS = "user";
     public static final String GET_USER = "";
     public static final String GET_PAYMENT_TYPES = "payment_type";
-    public static final String GET_CATEGORIES = "";
-    public static final String GET_BUYERS = "";
+    public static final String GET_CATEGORIES = "category";
+    public static final String GET_BUYERS = "buyer";
     public static final String GET_BUYER = "";
 }

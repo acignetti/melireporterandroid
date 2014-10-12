@@ -12,7 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.groppius.melireport.NavigationDrawerFragment;
+import com.groppius.melireport.synchro.SyncTask;
+import com.groppius.melireport.ui.fragments.NavigationDrawerFragment;
 import com.groppius.melireport.R;
 import com.groppius.melireport.entities.buyer.Buyer;
 import com.groppius.melireport.entities.buyer.BuyerRepository;
@@ -36,13 +37,8 @@ public class ReportMainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_main);
 
-        Buyer buyer = new Buyer();
-        buyer.setBuyer_id(1);
-        buyer.setBuyer_address("address");
-        buyer.setBuyer_email("email");
-        buyer.setBuyer_name("pepe");
-        BuyerRepository buyerRepository = new BuyerRepository(this);
-        buyerRepository.insert(buyer);
+        SyncTask syncTask = new SyncTask(this);
+        syncTask.execute();
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -52,6 +48,8 @@ public class ReportMainActivity extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+
     }
 
     @Override

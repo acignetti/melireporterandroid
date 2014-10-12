@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.groppius.melireport.R;
+import com.groppius.melireport.synchro.SyncTask;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;

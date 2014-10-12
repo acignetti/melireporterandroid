@@ -1,5 +1,6 @@
 package com.groppius.melireport.entities.payment;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -36,15 +37,17 @@ public class Payment {
     }
 
     public static Payment parser(JSONObject jsonObject) {
+        //{"payment_id":"2","payment_name":"master","payment_description":"","payment_category":null,"payment_status":"1"}
         Payment payment = new Payment();
-        try {
             if(jsonObject != null) {
-
+                try {
+                    payment.setPayment_id(jsonObject.getLong("payment_id"));
+                    payment.setPayment_name(jsonObject.getString("payment_name"));
+                    payment.setPayment_description(jsonObject.getString("payment_description"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-
-        }catch (Exception e) {
-
-        }
         return payment;
     }
 }

@@ -11,7 +11,7 @@ public class Sale {
 
     private long sale_id;
     private long sale_user_id;
-    private long sale_sale_id;
+    private long sale_item_id;
     private long sale_payment_id;
     private int sale_quantity;
     private Date sale_bought_on;
@@ -34,12 +34,12 @@ public class Sale {
         this.sale_user_id = sale_user_id;
     }
 
-    public long getSale_sale_id() {
-        return sale_sale_id;
+    public long getSale_item_id() {
+        return sale_item_id;
     }
 
-    public void setSale_sale_id(long sale_sale_id) {
-        this.sale_sale_id = sale_sale_id;
+    public void setSale_item_id(long sale_item_id) {
+        this.sale_item_id = sale_item_id;
     }
 
     public long getSale_payment_id() {

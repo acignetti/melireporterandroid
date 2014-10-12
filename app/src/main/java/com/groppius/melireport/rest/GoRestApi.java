@@ -58,6 +58,6 @@ public class GoRestApi {
                 e.printStackTrace();
             }
         }
-        return null;
+        return responseObject;
     }
 }

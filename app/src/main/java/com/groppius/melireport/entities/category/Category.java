@@ -1,5 +1,6 @@
 package com.groppius.melireport.entities.category;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -45,14 +46,18 @@ public class Category {
     }
 
     public static Category parser(JSONObject jsonObject) {
+        //{"category":[{"category_id":"1","category_name":"Accesorios para Veh\u00edculos","category_description":null,"category_father":"0","category_status":true}
         Category category = new Category();
         try {
             if(jsonObject != null) {
-
+                category.setCategory_id(jsonObject.getLong("category_id"));
+                category.setCategory_name(jsonObject.getString("category_name"));
+                category.setCategory_description(jsonObject.getString("category_description"));
+                category.setCategory_father(jsonObject.getLong("category_father"));
             }
 
-        }catch (Exception e) {
-
+        }catch (JSONException e) {
+            e.printStackTrace();
         }
         return category;
     }
