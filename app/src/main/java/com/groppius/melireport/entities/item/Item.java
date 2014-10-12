@@ -2,6 +2,8 @@ package com.groppius.melireport.entities.item;
 
 import android.media.Image;
 
+import org.json.JSONObject;
+
 import java.util.Date;
 
 /**
@@ -91,7 +93,18 @@ public class Item {
         this.item_thumbnail = item_thumbnail;
     }
 
+    public static Item parser(JSONObject jsonObject) {
+        Item item = new Item();
+        try {
+            if(jsonObject != null) {
 
+            }
+
+        }catch (Exception e) {
+
+        }
+        return item;
+    }
 
 
 }

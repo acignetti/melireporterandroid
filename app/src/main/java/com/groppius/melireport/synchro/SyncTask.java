@@ -9,9 +9,11 @@ import com.groppius.melireport.entities.buyer.Buyer;
 import com.groppius.melireport.entities.buyer.BuyerRepository;
 import com.groppius.melireport.entities.category.Category;
 import com.groppius.melireport.entities.category.CategoryRepository;
+import com.groppius.melireport.entities.item.Item;
 import com.groppius.melireport.entities.item.ItemRepository;
 import com.groppius.melireport.entities.payment.Payment;
 import com.groppius.melireport.entities.payment.PaymentRepository;
+import com.groppius.melireport.entities.sale.Sale;
 import com.groppius.melireport.entities.sale.SaleRepository;
 import com.groppius.melireport.entities.user.User;
 import com.groppius.melireport.entities.user.UserRepository;
@@ -55,13 +57,6 @@ public class SyncTask extends AsyncTask<Void, Void, Boolean> implements MeliRepo
 
 
     private Boolean synchronize(String userToken) {
-        BuyerRepository buyerRepository = new BuyerRepository(context);
-
-        ItemRepository itemRepository = new ItemRepository(context);
-
-        SaleRepository saleRepository = new SaleRepository(context);
-
-
         Log.d(SYNC_TASK_TAG, "Synchronize process started...");
 
         Log.d(SYNC_TASK_TAG, "Synchronizing Buyer Repo.");
@@ -169,4 +164,104 @@ public class SyncTask extends AsyncTask<Void, Void, Boolean> implements MeliRepo
         }
         Log.d(SYNC_TASK_TAG, "User Repo Synchronized correctly." );
     }
+
+    private void synchronizeBuyer() {
+        JSONObject response = null;
+        Log.d(SYNC_TASK_TAG, "Synchronizing Buyer Repo.");
+        BuyerRepository buyerRepository = new BuyerRepository(context);
+        try {
+            response = goRest.get(URL+GET_PAYMENT_TYPES);
+            if(response != null) {
+                //{ "success" : true, "message" : "Mensaje informativo", "optional" : "Datos extras que usa la aplicación" }
+                if(response.getBoolean("success")) {
+                    JSONObject optional = response.getJSONObject("optional");
+                    if(optional != null) {
+                        JSONArray buyers = optional.getJSONArray("buyer");
+                        if(buyers != null) {
+                            for (int i = 0; i < buyers.length(); i++) {
+                                Buyer buyer = Buyer.parser(buyers.getJSONObject(i));
+                                buyerRepository.insert(buyer);
+                            }
+                        }
+                    }
+                } else {
+                    Log.d(SYNC_TASK_TAG, response.getString("message"));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d(SYNC_TASK_TAG, "Synchronizing Buyer Repo failed - " + e.getMessage());
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.d(SYNC_TASK_TAG, "Synchronizing Buyer Repo failed - " + e.getMessage());
+        }
+        Log.d(SYNC_TASK_TAG, "Buyer Repo Synchronized correctly." );
+    }
+
+    private void synchronizeItem() {
+        JSONObject response = null;
+        Log.d(SYNC_TASK_TAG, "Synchronizing Item Repo.");
+        ItemRepository itemRepository = new ItemRepository(context);
+        try {
+            response = goRest.get(URL+GET_PAYMENT_TYPES);
+            if(response != null) {
+                //{ "success" : true, "message" : "Mensaje informativo", "optional" : "Datos extras que usa la aplicación" }
+                if(response.getBoolean("success")) {
+                    JSONObject optional = response.getJSONObject("optional");
+                    if(optional != null) {
+                        JSONArray items = optional.getJSONArray("item");
+                        if(items != null) {
+                            for (int i = 0; i < items.length(); i++) {
+                                Item item = Item.parser(items.getJSONObject(i));
+                                itemRepository.insert(item);
+                            }
+                        }
+                    }
+                } else {
+                    Log.d(SYNC_TASK_TAG, response.getString("message"));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d(SYNC_TASK_TAG, "Synchronizing Item Repo failed - " + e.getMessage());
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.d(SYNC_TASK_TAG, "Synchronizing Item Repo failed - " + e.getMessage());
+        }
+        Log.d(SYNC_TASK_TAG, "Item Repo Synchronized correctly." );
+    }
+
+    private void synchronizeSale() {
+        JSONObject response = null;
+        Log.d(SYNC_TASK_TAG, "Synchronizing Sale Repo.");
+        SaleRepository saleRepository = new SaleRepository(context);
+        try {
+            response = goRest.get(URL+GET_PAYMENT_TYPES);
+            if(response != null) {
+                //{ "success" : true, "message" : "Mensaje informativo", "optional" : "Datos extras que usa la aplicación" }
+                if(response.getBoolean("success")) {
+                    JSONObject optional = response.getJSONObject("optional");
+                    if(optional != null) {
+                        JSONArray sales = optional.getJSONArray("sale");
+                        if(sales != null) {
+                            for (int i = 0; i < sales.length(); i++) {
+                                Sale sale = Sale.parser(sales.getJSONObject(i));
+                                saleRepository.insert(sale);
+                            }
+                        }
+                    }
+                } else {
+                    Log.d(SYNC_TASK_TAG, response.getString("message"));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d(SYNC_TASK_TAG, "Synchronizing Sale Repo failed - " + e.getMessage());
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.d(SYNC_TASK_TAG, "Synchronizing Sale Repo failed - " + e.getMessage());
+        }
+        Log.d(SYNC_TASK_TAG, "Sale Repo Synchronized correctly." );
+    }
+
 }
