@@ -278,7 +278,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
         protected Boolean doInBackground(Void... params) {
             Boolean success = false;
             try {
-                response = httpclient.execute(new HttpPost("http://10.50.209.14/index.php/user/"+mEmail+"/"+mPassword));
+                response = httpclient.execute(new HttpPost("http://192.168.43.13/index.php/user/"+mEmail+"/"+mPassword));
                 StatusLine statusLine = response.getStatusLine();
                 UserRepository userRepository = new UserRepository(context);
                 if(statusLine.getStatusCode() == HttpStatus.SC_OK) {
@@ -292,16 +292,16 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
                         //{ "success" : true, "message" : "Mensaje informativo", "optional" : "Datos extras que usa la aplicación" }
                         if(success) {
                             String userToken = meliResponse.getString("optional");
-//                            if(userToken != null) {
-//                                User user = userRepository.get(mEmail);
-//                                if(user == null) {
-//                                    user = new User();
-//                                    user.setUser_name(mEmail);
-//                                    user.setUser_password(mPassword);
-//                                    user.setUser_token(userToken);
-//                                    userRepository.insert(user);
-//                                }
-//                            }
+                            /*if(userToken != null) {
+                                User user = userRepository.get(mEmail);
+                                if(user == null) {
+                                    user = new User();
+                                    user.setUser_name(mEmail);
+                                    user.setUser_password(mPassword);
+                                    user.setUser_token(userToken);
+                                    userRepository.insert(user);
+                                }
+                            }*/
                         } else {
                             Log.d("LOGIN_TASK", meliResponse.getString("message"));
                         }

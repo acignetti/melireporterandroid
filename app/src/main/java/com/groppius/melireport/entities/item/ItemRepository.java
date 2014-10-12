@@ -9,9 +9,7 @@ import com.groppius.melireport.database.DataBaseHelper;
 import com.groppius.melireport.database.MeliReportDbGlobalsInterface;
 import com.groppius.melireport.misc.Helper;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,7 +38,7 @@ public class ItemRepository implements MeliReportDbGlobalsInterface {
                 item.setItem_description(cursor.getString(cursor.getColumnIndex(ITEM_COLUMN_DESCRIPTION)));
                 item.setItem_price(cursor.getDouble(cursor.getColumnIndex(ITEM_COLUMN_PRICE)));
                 item.setItem_published_on(Helper.dateFormatter(cursor.getString(cursor.getColumnIndex(ITEM_COLUMN_PUBLISHED_ON))));
-                item.setGetItem_published_ended_on(Helper.dateFormatter(cursor.getString(cursor.getColumnIndex(ITEM_COLUMN_PUBLISHED_ENDED))));
+                item.setItem_published_ended_on(Helper.dateFormatter(cursor.getString(cursor.getColumnIndex(ITEM_COLUMN_PUBLISHED_ENDED))));
                 item.setItem_thumbnail(cursor.getString(cursor.getColumnIndex(ITEM_COLUMN_THUMBNAIL)));
                 item.setItem_category_id(cursor.getLong(cursor.getColumnIndex(ITEM_COLUMN_CATEGORY_ID_FK)));
                 item.setItem_cost(cursor.getDouble(cursor.getColumnIndex(ITEM_COLUMN_COST)));
@@ -58,7 +56,7 @@ public class ItemRepository implements MeliReportDbGlobalsInterface {
         values.put(ITEM_COLUMN_DESCRIPTION, item.getItem_description());
         values.put(ITEM_COLUMN_PRICE, item.getItem_price());
         values.put(ITEM_COLUMN_PUBLISHED_ON, item.getItem_published_on().toString());
-        values.put(ITEM_COLUMN_PUBLISHED_ENDED, item.getGetItem_published_ended_on().toString());
+        values.put(ITEM_COLUMN_PUBLISHED_ENDED, item.getItem_published_ended_on().toString());
         values.put(ITEM_COLUMN_THUMBNAIL, item.getItem_thumbnail());
         values.put(ITEM_COLUMN_CATEGORY_ID_FK, item.getItem_category_id());
         values.put(ITEM_COLUMN_COST, item.getItem_cost());
@@ -77,7 +75,7 @@ public class ItemRepository implements MeliReportDbGlobalsInterface {
         values.put(ITEM_COLUMN_DESCRIPTION, item.getItem_description());
         values.put(ITEM_COLUMN_PRICE, item.getItem_price());
         values.put(ITEM_COLUMN_PUBLISHED_ON, item.getItem_published_on().toString());
-        values.put(ITEM_COLUMN_PUBLISHED_ENDED, item.getGetItem_published_ended_on().toString());
+        values.put(ITEM_COLUMN_PUBLISHED_ENDED, item.getItem_published_ended_on().toString());
         values.put(ITEM_COLUMN_THUMBNAIL, item.getItem_thumbnail().toString());
         values.put(ITEM_COLUMN_CATEGORY_ID_FK, item.getItem_category_id());
         values.put(ITEM_COLUMN_COST, item.getItem_cost());

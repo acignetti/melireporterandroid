@@ -40,7 +40,10 @@ public class ItemReportFragment extends Fragment {
         buttonGenerate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Fragment fragment = WebViewFragment.newInstance();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.container, fragment)
+                        .commit();
             }
         });
 

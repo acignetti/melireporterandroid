@@ -15,5 +15,6 @@
     <string name="label_Save_button">Save Preferences</string>
     <string name="label_generate_report_button">Generate Report</string>
     <string name="title_category">Categories:</string>
+    <string name="label_pdf_button">Create PDF</string>
 
 </resources>

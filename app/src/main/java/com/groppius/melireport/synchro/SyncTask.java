@@ -41,7 +41,7 @@ public class SyncTask extends AsyncTask<Void, Void, Boolean> implements MeliRepo
 
     @Override
     protected Boolean doInBackground(Void... voids) {
-        return synchronize("");
+        return synchronize("/TT726719/0497eafa43804d8728d41d91d1c862cd");
     }
 
 
@@ -50,9 +50,9 @@ public class SyncTask extends AsyncTask<Void, Void, Boolean> implements MeliRepo
         //synchronizeUser();
         synchronizeCategory();
         synchronizePayment();
-        //synchronizeBuyer();
-        //synchronizeItem();
-        //synchronizeSale();
+        synchronizeBuyer(userToken);
+        synchronizeItem(userToken);
+        synchronizeSale(userToken);
         Log.d(SYNC_TASK_TAG, "Synchronizing process finished.");
         return null;
     }
@@ -123,12 +123,12 @@ public class SyncTask extends AsyncTask<Void, Void, Boolean> implements MeliRepo
         Log.d(SYNC_TASK_TAG, "Category Repo Synchronized correctly." );
     }
 
-    private void synchronizeUser() {
+    private void synchronizeUser(String token) {
         JSONObject response = null;
         Log.d(SYNC_TASK_TAG, "Synchronizing User Repo.");
         UserRepository userRepository = new UserRepository(context);
         try {
-            response = goRest.get(URL+GET_USER);
+            response = goRest.get(URL+GET_USER+token);
             if(response != null) {
                 //{ "success" : true, "message" : "Mensaje informativo", "optional" : "Datos extras que usa la aplicación" }
                 if(response.getBoolean("success")) {
@@ -156,12 +156,12 @@ public class SyncTask extends AsyncTask<Void, Void, Boolean> implements MeliRepo
         Log.d(SYNC_TASK_TAG, "User Repo Synchronized correctly." );
     }
 
-    private void synchronizeBuyer() {
+    private void synchronizeBuyer(String token) {
         JSONObject response = null;
         Log.d(SYNC_TASK_TAG, "Synchronizing Buyer Repo.");
         BuyerRepository buyerRepository = new BuyerRepository(context);
         try {
-            response = goRest.get(URL+GET_PAYMENT_TYPES);
+            response = goRest.get(URL+GET_BUYER+token);
             if(response != null) {
                 //{ "success" : true, "message" : "Mensaje informativo", "optional" : "Datos extras que usa la aplicación" }
                 if(response.getBoolean("success")) {
@@ -189,12 +189,12 @@ public class SyncTask extends AsyncTask<Void, Void, Boolean> implements MeliRepo
         Log.d(SYNC_TASK_TAG, "Buyer Repo Synchronized correctly." );
     }
 
-    private void synchronizeItem() {
+    private void synchronizeItem(String token) {
         JSONObject response = null;
         Log.d(SYNC_TASK_TAG, "Synchronizing Item Repo.");
         ItemRepository itemRepository = new ItemRepository(context);
         try {
-            response = goRest.get(URL+GET_PAYMENT_TYPES);
+            response = goRest.get(URL+GET_ITEM+token);
             if(response != null) {
                 //{ "success" : true, "message" : "Mensaje informativo", "optional" : "Datos extras que usa la aplicación" }
                 if(response.getBoolean("success")) {
@@ -222,12 +222,12 @@ public class SyncTask extends AsyncTask<Void, Void, Boolean> implements MeliRepo
         Log.d(SYNC_TASK_TAG, "Item Repo Synchronized correctly." );
     }
 
-    private void synchronizeSale() {
+    private void synchronizeSale(String token) {
         JSONObject response = null;
         Log.d(SYNC_TASK_TAG, "Synchronizing Sale Repo.");
         SaleRepository saleRepository = new SaleRepository(context);
         try {
-            response = goRest.get(URL+GET_PAYMENT_TYPES);
+            response = goRest.get(URL+GET_SALE+token);
             if(response != null) {
                 //{ "success" : true, "message" : "Mensaje informativo", "optional" : "Datos extras que usa la aplicación" }
                 if(response.getBoolean("success")) {

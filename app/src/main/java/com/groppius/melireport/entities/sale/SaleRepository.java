@@ -39,8 +39,9 @@ public class SaleRepository implements MeliReportDbGlobalsInterface {
                 sale.setSale_payed_on(Helper.dateFormatter(cursor.getString(cursor.getColumnIndex(SALE_COLUMN_PAID_ON))));
                 sale.setSale_payment_id(cursor.getLong(cursor.getColumnIndex(SALE_COLUMN_PAYMENT_ID)));
                 sale.setSale_quantity(cursor.getInt(cursor.getColumnIndex(SALE_COLUMN_QUANTITY)));
-                sale.setSale_status(cursor.getInt(cursor.getColumnIndex(SALE_COLUMN_STATUS)));
+                sale.setSale_status(cursor.getString(cursor.getColumnIndex(SALE_COLUMN_STATUS)));
                 sale.setSale_user_id(cursor.getLong(cursor.getColumnIndex(SALE_COLUMN_USER_ID)));
+                sale.setSale_total(cursor.getDouble(cursor.getColumnIndex(SALE_COLUMN_TOTAL)));
                 sales.add(sale);
             } while (cursor.moveToNext());
         }
