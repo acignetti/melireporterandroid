@@ -13,8 +13,10 @@
     <string name="title_date_from">From: </string>
     <string name="title_date_to">To:</string>
     <string name="label_Save_button">Save Preferences</string>
-    <string name="label_generate_report_button">Generate Report</string>
+    <string name="label_generate_report_button">Generate Web Report</string>
     <string name="title_category">Categories:</string>
     <string name="label_pdf_button">Create PDF</string>
+    <string name="label_generate_report_dynamic">Generate Dynamic Report</string>
+    <string name="label_generate_report_button_static">Generate Static report</string>
 
 </resources>

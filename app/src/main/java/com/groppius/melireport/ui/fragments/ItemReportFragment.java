@@ -2,6 +2,7 @@ package com.groppius.melireport.ui.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.groppius.melireport.R;
+import com.groppius.melireport.ui.DynamicXYPlotActivity;
 import com.groppius.melireport.ui.ReportMainActivity;
+import com.groppius.melireport.ui.SimpleXYPlotActivity;
 
 /**
  * Created by julio on 12/10/14.
@@ -18,8 +21,9 @@ public class ItemReportFragment extends Fragment {
 
     protected static final String ARG_SECTION_NUMBER = "section_number";
 
-    Button buttonGenerate;
-    Button buttonSave;
+    Button buttonGenerateWeb;
+    Button buttonGenerateDynamic;
+    Button buttonGenerateStatic;
 
     public static ItemReportFragment newInstance(int sectionNumber) {
         ItemReportFragment fragment = new ItemReportFragment();
@@ -36,8 +40,8 @@ public class ItemReportFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_item_filter, container, false);
 
-        buttonGenerate = (Button) rootView.findViewById(R.id.button_generate_report_item);
-        buttonGenerate.setOnClickListener(new View.OnClickListener() {
+        buttonGenerateWeb = (Button) rootView.findViewById(R.id.button_generate_report_item);
+        buttonGenerateWeb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment = WebViewFragment.newInstance();
@@ -47,11 +51,21 @@ public class ItemReportFragment extends Fragment {
             }
         });
 
-        buttonSave =  (Button) rootView.findViewById(R.id.button_save_item);
-        buttonSave.setOnClickListener(new View.OnClickListener() {
+        buttonGenerateDynamic =  (Button) rootView.findViewById(R.id.button_generate_report_dynamic);
+        buttonGenerateDynamic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent i = new Intent(getActivity().getApplicationContext(), DynamicXYPlotActivity.class);
+                startActivity(i);
+            }
+        });
 
+        buttonGenerateStatic =  (Button) rootView.findViewById(R.id.button_generate_report_static);
+        buttonGenerateStatic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity().getApplicationContext(), SimpleXYPlotActivity.class);
+                startActivity(i);
             }
         });
 
