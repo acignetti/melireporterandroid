@@ -54,7 +54,7 @@ public class Buyer {
         this.buyer_address = buyer_address;
     }
 
-    public Buyer parser(JSONObject jsonObject) {
+    public static Buyer parser(JSONObject jsonObject) {
         Buyer buyer = new Buyer();
         try {
             if(jsonObject != null) {

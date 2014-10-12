@@ -1,5 +1,7 @@
 package com.groppius.melireport.entities.payment;
 
+import org.json.JSONObject;
+
 /**
  * Created by julio on 11/10/14.
  */
@@ -31,5 +33,18 @@ public class Payment {
 
     public void setPayment_description(String payment_description) {
         this.payment_description = payment_description;
+    }
+
+    public static Payment parser(JSONObject jsonObject) {
+        Payment payment = new Payment();
+        try {
+            if(jsonObject != null) {
+
+            }
+
+        }catch (Exception e) {
+
+        }
+        return payment;
     }
 }

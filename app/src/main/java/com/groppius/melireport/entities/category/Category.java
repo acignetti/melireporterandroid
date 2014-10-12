@@ -1,5 +1,7 @@
 package com.groppius.melireport.entities.category;
 
+import org.json.JSONObject;
+
 /**
  * Created by julio on 11/10/14.
  */
@@ -40,5 +42,18 @@ public class Category {
 
     public void setCategory_father(long category_father) {
         this.category_father = category_father;
+    }
+
+    public static Category parser(JSONObject jsonObject) {
+        Category category = new Category();
+        try {
+            if(jsonObject != null) {
+
+            }
+
+        }catch (Exception e) {
+
+        }
+        return category;
     }
 }

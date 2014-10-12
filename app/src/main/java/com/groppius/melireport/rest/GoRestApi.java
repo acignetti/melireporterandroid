@@ -19,29 +19,27 @@ import java.io.IOException;
  * Created by julio on 11/10/14.
  */
 public class GoRestApi {
-    private String uri;
 
     private HttpClient httpclient = new DefaultHttpClient();
     private HttpResponse response;
     private JSONObject meliResponse;
 
-    public GoRestApi(String uri) {
-        this.uri = uri;
+    public GoRestApi() {
     }
 
-    public JSONObject get() throws IOException {
+    public JSONObject get(String uri) throws IOException {
         return executeMethod(httpclient.execute(new HttpGet(uri)));
     }
 
-    public JSONObject post() throws IOException {
+    public JSONObject post(String uri) throws IOException {
         return executeMethod(httpclient.execute(new HttpPost(uri)));
     }
 
-    public JSONObject put() throws IOException {
+    public JSONObject put(String uri) throws IOException {
         return executeMethod(httpclient.execute(new HttpPut(uri)));
     }
 
-    public JSONObject delete() throws IOException {
+    public JSONObject delete(String uri) throws IOException {
         return executeMethod(httpclient.execute(new HttpDelete(uri)));
     }
 

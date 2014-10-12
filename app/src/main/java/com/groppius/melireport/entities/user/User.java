@@ -2,6 +2,8 @@ package com.groppius.melireport.entities.user;
 
 import android.media.Image;
 
+import org.json.JSONObject;
+
 /**
  * Created by julio on 11/10/14.
  */
@@ -78,5 +80,18 @@ public class User {
 
     public void setUser_thumbnail(String user_thumbnail) {
         this.user_thumbnail = user_thumbnail;
+    }
+
+    public static User parser(JSONObject jsonObject) {
+        User user = new User();
+        try {
+            if(jsonObject != null) {
+
+            }
+
+        }catch (Exception e) {
+
+        }
+        return user;
     }
 }
